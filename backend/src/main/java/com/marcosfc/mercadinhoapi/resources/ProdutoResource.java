@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.marcosfc.mercadinhoapi.entities.Cliente;
-import com.marcosfc.mercadinhoapi.services.ClienteService;
+import com.marcosfc.mercadinhoapi.entities.Produto;
+import com.marcosfc.mercadinhoapi.services.ProdutoService;
 
 @RestController
-@RequestMapping(value = "/clientes")
-public class ClienteResource {
+@RequestMapping(value = "/produtos")
+public class ProdutoResource {
 	
 	@Autowired
-	private ClienteService service;
+	private ProdutoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Cliente>> findAll(){
-		List<Cliente> list = service.findAll();
+	public ResponseEntity<List<Produto>> findAll(){
+		List<Produto> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Cliente> findById(@PathVariable Long id){
-		Cliente obj = service.findById(id);
+	public ResponseEntity<Produto> findById(@PathVariable Long id){
+		Produto obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }
