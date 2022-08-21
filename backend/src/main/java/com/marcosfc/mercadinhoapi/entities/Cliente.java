@@ -2,12 +2,15 @@ package com.marcosfc.mercadinhoapi.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,9 @@ public class Cliente implements Serializable {
 	private Long id;
 	private String nome;
 	private LocalDate dataDeNascimento;
+	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<Compras> compras = new HashSet<>();
 	
 	public Cliente() {
 	}
