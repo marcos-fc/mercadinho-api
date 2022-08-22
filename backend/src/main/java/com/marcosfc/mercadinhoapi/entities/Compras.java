@@ -3,45 +3,46 @@ package com.marcosfc.mercadinhoapi.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.marcosfc.mercadinhoapi.entities.pk.ComprasPK;
 
 @Entity
 @Table(name = "tb_Compras")
 public class Compras implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private ComprasPK id = new ComprasPK();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@ManyToOne
+	private Cliente cliente;
+
+	@ManyToOne
+	private Produto produto;
 	
 	private LocalDate data;
 	
 	public Compras() {
 	}
-
-	public Compras(Cliente cliente, Produto produto, LocalDate data) {
-		id.setCliente(cliente);
-		id.setProduto(produto);
+	
+	public Compras(Long id, Cliente cliente, Produto produto, LocalDate data) {
+		this.id = id;
+		this.cliente = cliente;
+		this.produto = produto;
 		this.data = data;
 	}
 	
-	public Cliente getCliente() {
-		return id.getCliente();
+	public Long getId() {
+		return id;
 	}
-	
-	public void setCliente(Cliente cliente) {
-		id.setCliente(cliente);
-	}
-	
-	public Produto getProduto() {
-		return id.getProduto();
-	}
-	
-	public void setProduto(Produto produto) {
-		id.setProduto(produto);
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public LocalDate getData() {
@@ -50,6 +51,22 @@ public class Compras implements Serializable {
 
 	public void setData(LocalDate data) {
 		this.data = data;
+	}
+	
+	public Cliente getId_cliente() {
+		return cliente;
+	}
+
+	public void setId_cliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Produto getId_produto() {
+		return produto;
+	}
+
+	public void setId_produto(Produto produto) {
+		this.produto = produto;
 	}
 
 	@Override

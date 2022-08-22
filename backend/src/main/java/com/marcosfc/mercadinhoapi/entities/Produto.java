@@ -1,9 +1,8 @@
 package com.marcosfc.mercadinhoapi.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_produtos")
@@ -24,9 +25,10 @@ public class Produto implements Serializable {
 	private Double preco;
 	private String descricao;
 	
-	@OneToMany(mappedBy = "id.cliente")
-	private Set<Compras> compras = new HashSet<>();
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "produto")
+	private List<Compras> compras = new ArrayList<>();
+
 	public Produto() {
 	}
 
@@ -36,6 +38,8 @@ public class Produto implements Serializable {
 		this.preco = preco;
 		this.descricao = descricao;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -69,9 +73,16 @@ public class Produto implements Serializable {
 		this.descricao = descricao;
 	}
 
+	public List<Compras> getCompras() {
+		return compras;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -83,7 +94,13 @@ public class Produto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
+	
 	
 }

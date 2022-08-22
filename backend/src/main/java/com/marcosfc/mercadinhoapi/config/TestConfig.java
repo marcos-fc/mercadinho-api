@@ -47,11 +47,11 @@ public class TestConfig implements CommandLineRunner{
 		
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
-		Compras c1 = new Compras(cl1,p1, LocalDate.parse("14/10/2022", dtf));
-		Compras c2 = new Compras(cl2,p2, LocalDate.parse("14/10/2022", dtf));
-		Compras c3 = new Compras(cl2,p4, LocalDate.parse("14/10/2022", dtf));
-		Compras c4 = new Compras(cl1,p2, LocalDate.parse("14/10/2022", dtf));
-		Compras c5 = new Compras(cl2,p3, LocalDate.parse("14/10/2022", dtf));
+		Compras c1 = new Compras(null, cl1,p1, LocalDate.parse("14/10/2022", dtf));
+		Compras c2 = new Compras(null, cl2,p2, LocalDate.parse("14/10/2022", dtf));
+		Compras c3 = new Compras(null, cl2,p4, LocalDate.parse("14/10/2022", dtf));
+		Compras c4 = new Compras(null, cl1,p2, LocalDate.parse("14/10/2022", dtf));
+		Compras c5 = new Compras(null, cl2,p3, LocalDate.parse("14/10/2022", dtf));
 		
 		comprasRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5));
 	}
