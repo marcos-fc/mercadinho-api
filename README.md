@@ -1,7 +1,7 @@
 # mercadinho-api
 O objetivo desse projeto é desenvolver um sistema de mercadinho que possibilita saber qual cliente comprou mais em determinado mês.
 
-# tecnologias que serão utilizadas
+# tecnologias que estão sendo utilizadas
 
 ## backend
 #### java versão 11
